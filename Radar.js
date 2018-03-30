@@ -21,15 +21,19 @@ function Radar(i) {
 
     fill(0,0,0,40); //10
     noStroke();
-    arc(0,150,width/1.1,height,this.radR,this.radL);
+    arc(0,60,width/1.1,height,this.radR,this.radL);
+    //Mask
     fill(0,0,0);
     noStroke();
-    arc(0,150,width/1.1,height,this.radMaskR,this.radMaskL);
-    //Radar Lines
+    arc(0,60,width,height,this.radMaskR,this.radMaskL);
+    //Radar Line
     fill(0,255,0,5);
     noStroke();
-    arc(0,150,width/1.1,height,this.radLine-.005,this.radLine);
-
+    arc(0,60,width,height,this.radLine-.005,this.radLine);
+    noFill();
+    stroke(0,255,0)
+    strokeWeight(1);
+    ellipse(0,60,width+5,height+5);
   }
 }
 
