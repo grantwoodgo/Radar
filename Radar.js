@@ -1,6 +1,8 @@
 function Radar(i) {
   var scanWidth=.1; //width of scanning arc
   var speed=.05;
+  var frac=.9;
+  var numCaseCirlces=6;
   this.i=i;
   this.radR=PI;//+this.i*5*scanWidth/(2*PI);
   this.radL=this.radR-scanWidth*(this.i+1);
@@ -16,24 +18,31 @@ function Radar(i) {
     }
     this.radL=this.radR-scanWidth*(i+1);
     this.radMaskL=this.radMaskR-scanWidth*15; //replace # with numRadars
+    radR=this.radR;
   }
   this.show=function(){
-
+    //All Black Masks
     fill(0,0,0,40); //10
     noStroke();
-    arc(0,60,width/1.1,height,this.radR,this.radL);
-    //Mask
+    arc(0,0,frac*width,frac*height,this.radR,this.radL);
+    //Ultimate Opaque Mask
     fill(0,0,0);
     noStroke();
-    arc(0,60,width,height,this.radMaskR,this.radMaskL);
-    //Radar Line
+    arc(0,0,frac*width,frac*height,this.radMaskR,this.radMaskL);
+    //Sweeping Radar Line
     fill(0,255,0,5);
     noStroke();
-    arc(0,60,width,height,this.radLine-.005,this.radLine);
+    arc(0,0,fracCase*width,fracCase*height,this.radLine-.005,this.radLine);
+    //Radar Case
     noFill();
     stroke(0,255,0)
+    strokeWeight(2);
+    ellipse(0,0,fracCase*width,fracCase*height);
+    stroke(0,255,0,2);
     strokeWeight(1);
-    ellipse(0,60,width+5,height+5);
+    for (var i = 0; i < numCaseCirlces; i++) {
+      ellipse(0,0,width*(i/numCaseCirlces),height*(i/numCaseCirlces))
+    }
   }
 }
 
