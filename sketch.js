@@ -1,12 +1,17 @@
+//GLOBAL VARIABLES
 var h;
 var m;
 var s;
 var tSize;
 var radars=[];
+//var blips=[];
 var numRadars=80; //100 //Resolution of sweep
+var numBlips=5;
 var hDisp=0;
 var mDisp=0;
 var sDisp=0;
+var fracCase=.95;
+var radR=0;
 
 function preload() {
 	myFont=loadFont('Space Crusader.otf')
@@ -25,12 +30,20 @@ function setup() {
 		radars[i].update();
 		radars[i].show();
 	}
+	/*
+	for (var i = 0; i < numBlips; i++) {
+		blips[i]= new Blip();
+		blips[i].update();
+		blips[i].show();
+	}
+	*/
 }
 
 function draw() {
 	background(0);
-	translate(width/2,height/2-60);
-	if (hour()<=9) {h='0'+hour();}
+	translate(width/2,height/2-(width*1/5));
+	if(hour()==0) {h='12';}
+	else if (hour()<=9) {h='0'+hour();}
 	else {h='0'+hour()%12;}
 	if (m<=9) {m='0'+minute();}
 	else {m=minute();}
@@ -56,9 +69,26 @@ function draw() {
 	if(radars[0].radR>=PI || radars[0].radR<PI/3){
 			text(hDisp+':'+mDisp+':'+sDisp,0,0);
 	}
+	translate(0,width*1/5);
+	fill(0,255,0,100);
+	for (var i = 0; i < 8; i++) {
+		rect(0,0,2,height/2*fracCase-30);
+		rotate(2*PI/8);
+	}
+	/*
+	for (var i = 0; i < numBlips; i++) {
+		blips[i].update();
+		blips[i].show();
+	}
+	*/
 	for (var i = 0; i < numRadars; i++) {
 		radars[i].update();
 		radars[i].show();
 	}
-
 }
+
+/*
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+*/
