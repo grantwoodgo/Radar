@@ -17,31 +17,32 @@ function Radar(i) {
       this.radR=0;
     }
     this.radL=this.radR-scanWidth*(i+1);
-    this.radMaskL=this.radMaskR-scanWidth*15; //replace # with numRadars
+    this.radMaskL=this.radMaskR-scanWidth*(numRadars);//15; //replace # with numRadars
     radR=this.radR;
+    radL=this.radL;
   }
   this.show=function(){
     //All Black Masks
     fill(0,0,0,40); //10
     noStroke();
-    arc(0,0,frac*width,frac*height,this.radR,this.radL);
+    arc(0,0,frac*side,frac*side,this.radR,this.radL);
     //Ultimate Opaque Mask
     fill(0,0,0);
     noStroke();
-    arc(0,0,frac*width,frac*height,this.radMaskR,this.radMaskL);
+    arc(0,0,frac*side,frac*side,this.radMaskR,this.radMaskL);
     //Sweeping Radar Line
     fill(0,255,0,5);
     noStroke();
-    arc(0,0,fracCase*width,fracCase*height,this.radLine-.005,this.radLine);
+    arc(0,0,fracCase*side,fracCase*side,this.radLine-.005,this.radLine);
     //Radar Case
     noFill();
     stroke(0,255,0)
     strokeWeight(2);
-    ellipse(0,0,fracCase*width,fracCase*height);
+    ellipse(0,0,fracCase*side,fracCase*side);
     stroke(0,255,0,2);
     strokeWeight(1);
     for (var i = 0; i < numCaseCirlces; i++) {
-      ellipse(0,0,width*(i/numCaseCirlces),height*(i/numCaseCirlces))
+      ellipse(0,0,side*(i/numCaseCirlces),side*(i/numCaseCirlces))
     }
   }
 }
