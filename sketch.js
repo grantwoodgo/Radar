@@ -59,7 +59,7 @@ function draw() {
 	else {s=second();}
 	tSize=side/5;
 	textSize(tSize);
-	fill(0,255,0);
+	fill(255);
 	if(radars[0].radR>=PI && radars[0].radR<=1.05*PI){
 		hDisp=h;
 		mDisp=m;
