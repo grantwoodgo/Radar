@@ -52,6 +52,8 @@ function draw() {
 	translate(width/2,height/2-(side*1/5));
 	if(hour()==0) {h='12';}
 	else if (hour()<=9) {h='0'+hour();}
+	else if (hour()<=12) {h=hour();}
+	else if (hour()>=22) {h=hour()%12;}
 	else {h='0'+hour()%12;}
 	if (m<=9) {m='0'+minute();}
 	else {m=minute();}
